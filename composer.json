@@ -1,0 +1,52 @@
+{
+    "name": "mades/summer-craft-service-hub",
+    "description": "The -=Summer Craft=- Service Hub: DB handler, logging, mail, HTTP client, files and other services",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../summer-craft-core",
+            "options": {
+                "versions": {
+                    "mades/summer-craft-core": "0.1.x-dev"
+                }
+            }
+        }
+    ],
+    "require": {
+        "php": ">=8.4",
+        "ext-curl": "*",
+        "ext-pdo": "*",
+        "ext-mbstring": "*",
+        "psr/log": "^3.0",
+        "mades/summer-craft-core": "^0.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5",
+        "phpstan/phpstan": "^2.1"
+    },
+    "suggest": {
+        "ext-dom": "Required only by SummerCraft\\Service\\HtmlParser\\DomHtmlParser — the default HtmlParser binding is SimpleHtmlDomParser, which needs no extension",
+        "ext-iconv": "Preferred for recoding documents that declare a non-UTF-8 charset and for encoding non-ASCII mail headers; without it SimpleHtmlDom recodes through mbstring and EmailSender does its own Q encoding"
+    },
+    "autoload": {
+        "psr-4": {
+            "SummerCraft\\Service\\": "src/SummerCraft/Service/"
+        },
+        "classmap": [
+            "src/SummerCraft/Service/HtmlParser/SimpleHtmlDom/SimpleHtmlDom.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SummerCraft\\Service\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "stan": "phpstan analyse"
+    }
+}
